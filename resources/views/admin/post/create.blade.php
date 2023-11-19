@@ -48,7 +48,7 @@
                                 @enderror
                             </div>
                             <div class="form-group w-50">
-                                <label for="exampleInputFile">Add preview</label>
+                                <label>Add preview</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="preview_image">
@@ -58,9 +58,15 @@
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+
+                                @error('preview_image')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                             <div class="form-group w-50">
-                                <label for="exampleInputFile">Add main image</label>
+                                <label>Add main image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="main_image">
@@ -70,6 +76,22 @@
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+
+                                @error('main_image')
+                                <div class="text-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                            <div class="form-group w-50">
+                                <label>Choose category</label>
+                                <select name="category_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == old('category_id') ? ' selected' : '' }}
+                                        >{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Create">
