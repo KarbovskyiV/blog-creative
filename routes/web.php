@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
+use App\Http\Controllers\Admin\Post\IndexController as PostIndexController;
+use App\Http\Controllers\Admin\Post\CreateController as PostCreateController;
+use App\Http\Controllers\Admin\Post\StoreController as PostStoreController;
+use App\Http\Controllers\Admin\Post\ShowController as PostShowController;
+use App\Http\Controllers\Admin\Post\EditController as PostEditController;
+use App\Http\Controllers\Admin\Post\UpdateController as PostUpdateController;
+use App\Http\Controllers\Admin\Post\DeleteController as PostDeleteController;
 use App\Http\Controllers\Admin\Category\IndexController as CategoryIndexController;
 use App\Http\Controllers\Admin\Category\CreateController as CategoryCreateController;
 use App\Http\Controllers\Admin\Category\StoreController as CategoryStoreController;
@@ -23,7 +30,16 @@ Route::get('/', IndexController::class);
 Route::prefix('admin')->group(function () {
     Route::get('/', AdminIndexController::class);
 
-    Route::prefix('category')->group(function () {
+    Route::prefix('posts')->group(function () {
+        Route::get('/', PostIndexController::class)->name('admin.post.index');
+        Route::get('/create', PostCreateController::class)->name('admin.post.create');
+        Route::post('/', PostStoreController::class)->name('admin.post.store');
+        Route::get('/{post}', PostShowController::class)->name('admin.post.show');
+        Route::get('/{post}/edit', PostEditController::class)->name('admin.post.edit');
+        Route::patch('/{post}', PostUpdateController::class)->name('admin.post.update');
+        Route::delete('/{post}', PostDeleteController::class)->name('admin.post.delete');
+    });
+    Route::prefix('categories')->group(function () {
         Route::get('/', CategoryIndexController::class)->name('admin.category.index');
         Route::get('/create', CategoryCreateController::class)->name('admin.category.create');
         Route::post('/', CategoryStoreController::class)->name('admin.category.store');
