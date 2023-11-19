@@ -30,7 +30,7 @@
                             @method('patch')
                             <div class="form-group">
                                 <input type="text" class="form-control" name="title" placeholder="Name of post"
-                                       value="{{ $ost->title }}">
+                                       value="{{ $post->title }}">
                             </div>
                             @error('title')
                             <div class="text-danger">
