@@ -7,10 +7,18 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
+                <a href="{{ route('admin.user.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        Users
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.post.index') }}" class="nav-link">
                     <i class="nav-icon far fa-clipboard"></i>
                     <p>
-                        Post
+                        Posts
                     </p>
                 </a>
             </li>
@@ -18,7 +26,7 @@
                 <a href="{{ route('admin.category.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-th-list"></i>
                     <p>
-                        Category
+                        Categories
                     </p>
                 </a>
             </li>
@@ -26,7 +34,7 @@
                 <a href="{{ route('admin.tag.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-tags"></i>
                     <p>
-                        Tag
+                        Tags
                     </p>
                 </a>
             </li>
