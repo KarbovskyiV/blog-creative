@@ -12,6 +12,7 @@ class CreateController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+
         return view('admin.post.create', compact('categories', 'tags'));
     }
 }
