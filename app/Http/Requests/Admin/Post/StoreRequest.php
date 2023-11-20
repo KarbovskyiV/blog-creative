@@ -31,4 +31,13 @@ class StoreRequest extends FormRequest
             'tag_ids.*' => ['nullable', 'integer', 'exists:tags,id'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => "Це поле обов'язкове для заповнення",
+            'title.string' => 'Дані повинні бути рядком'
+            // і т.д.
+        ];
+    }
 }
