@@ -7,3 +7,5 @@
 create database.sqlite file under database folder
 
 `php artisan migrate`
+
+`php artisan storage:link`
