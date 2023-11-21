@@ -46,15 +46,6 @@
                             </div>
                             @enderror
 
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="password" placeholder="Password">
-                            </div>
-                            @error('password')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                            @enderror
-
                             <div class="form-group w-50">
                                 <label>Choose role</label>
                                 <select name="role" class="form-control">
