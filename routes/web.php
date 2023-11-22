@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', IndexController::class);
 
 Route::prefix('admin')->middleware(['auth', 'admin', 'verified'])->group(function () {
-    Route::get('/', AdminIndexController::class);
+    Route::get('/', AdminIndexController::class)->name('admin.main.index');
 
     Route::prefix('posts')->group(function () {
         Route::get('/', PostIndexController::class)->name('admin.post.index');
