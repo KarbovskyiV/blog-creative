@@ -3,6 +3,7 @@
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Personal\Main\IndexController as PersonalIndexController;
 use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
+use App\Http\Controllers\Personal\Liked\DeleteController as LikedDeleteController;
 use App\Http\Controllers\Personal\Comment\IndexController as CommentIndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\Post\IndexController as PostIndexController;
@@ -43,6 +44,7 @@ Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
     });
     Route::prefix('liked')->group(function () {
         Route::get('/', LikedIndexController::class)->name('personal.liked.index');
+        Route::delete('/{post}', LikedDeleteController::class)->name('personal.liked.delete');
     });
     Route::prefix('comments')->group(function () {
         Route::get('/', CommentIndexController::class)->name('personal.comment.index');
