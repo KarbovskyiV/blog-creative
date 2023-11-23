@@ -10,9 +10,11 @@ use App\Http\Controllers\Personal\Comment\UpdateController as CommentUpdateContr
 use App\Http\Controllers\Personal\Comment\DeleteController as CommentDeleteController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\Post\IndexController as PostIndexController;
+use App\Http\Controllers\Post\IndexController as PostBlogIndexController;
 use App\Http\Controllers\Admin\Post\CreateController as PostCreateController;
 use App\Http\Controllers\Admin\Post\StoreController as PostStoreController;
 use App\Http\Controllers\Admin\Post\ShowController as PostShowController;
+use App\Http\Controllers\Post\ShowController as PostBlogShowController;
 use App\Http\Controllers\Admin\Post\EditController as PostEditController;
 use App\Http\Controllers\Admin\Post\UpdateController as PostUpdateController;
 use App\Http\Controllers\Admin\Post\DeleteController as PostDeleteController;
@@ -40,6 +42,11 @@ use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('main.index');
+
+Route::prefix('posts')->group(function () {
+    Route::get('/', PostBlogIndexController::class)->name('post.index');
+    Route::get('/{post}', PostBlogShowController::class)->name('post.show');
+});
 
 Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
     Route::prefix('main')->group(function () {
