@@ -39,7 +39,7 @@ use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', IndexController::class);
+Route::get('/', IndexController::class)->name('main.index');
 
 Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
     Route::prefix('main')->group(function () {
