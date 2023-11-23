@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Personal\Main\IndexController as PersonalIndexController;
+use App\Http\Controllers\Personal\Liked\IndexController as LikedIndexController;
+use App\Http\Controllers\Personal\Comment\IndexController as CommentIndexController;
 use App\Http\Controllers\Admin\Main\IndexController as AdminIndexController;
 use App\Http\Controllers\Admin\Post\IndexController as PostIndexController;
 use App\Http\Controllers\Admin\Post\CreateController as PostCreateController;
@@ -33,6 +36,18 @@ use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class);
+
+Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('main')->group(function () {
+        Route::get('/', PersonalIndexController::class)->name('personal.main.index');
+    });
+    Route::prefix('liked')->group(function () {
+        Route::get('/', LikedIndexController::class)->name('personal.liked.index');
+    });
+    Route::prefix('comments')->group(function () {
+        Route::get('/', CommentIndexController::class)->name('personal.comment.index');
+    });
+});
 
 Route::prefix('admin')->middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::get('/', AdminIndexController::class)->name('admin.main.index');
