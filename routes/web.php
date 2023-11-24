@@ -40,6 +40,7 @@ use App\Http\Controllers\Admin\User\EditController as UserEditController;
 use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
 use App\Http\Controllers\Post\Comment\StoreController as PostCommentStoreController;
+use App\Http\Controllers\Post\Like\StoreController as PostLikeStoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('main.index');
@@ -50,6 +51,9 @@ Route::prefix('posts')->group(function () {
 
     Route::prefix('{post}/comments')->group(function () {
         Route::post('/', PostCommentStoreController::class)->name('post.comment.store');
+    });
+    Route::prefix('{post}/likes')->group(function () {
+        Route::post('/', PostLikeStoreController::class)->name('post.like.store');
     });
 });
 
