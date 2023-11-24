@@ -39,6 +39,7 @@ use App\Http\Controllers\Admin\User\ShowController as UserShowController;
 use App\Http\Controllers\Admin\User\EditController as UserEditController;
 use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
+use App\Http\Controllers\Post\Comment\StoreController as PostCommentStoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('main.index');
@@ -46,6 +47,10 @@ Route::get('/', IndexController::class)->name('main.index');
 Route::prefix('posts')->group(function () {
     Route::get('/', PostBlogIndexController::class)->name('post.index');
     Route::get('/{post}', PostBlogShowController::class)->name('post.show');
+
+    Route::prefix('{post}/comments')->group(function () {
+        Route::post('/', PostCommentStoreController::class)->name('post.comment.store');
+    });
 });
 
 Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
