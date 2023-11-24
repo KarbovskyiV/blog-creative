@@ -41,6 +41,8 @@ use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
 use App\Http\Controllers\Post\Comment\StoreController as PostCommentStoreController;
 use App\Http\Controllers\Post\Like\StoreController as PostLikeStoreController;
+use App\Http\Controllers\Category\IndexController as CategoriesIndexController;
+use App\Http\Controllers\Category\Post\IndexController as CategoryPostIndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexController::class)->name('main.index');
@@ -56,6 +58,15 @@ Route::prefix('posts')->group(function () {
         Route::post('/', PostLikeStoreController::class)->name('post.like.store');
     });
 });
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', CategoriesIndexController::class)->name('category.index');
+
+    Route::prefix('{category}/posts')->group(function () {
+        Route::get('/', CategoryPostIndexController::class)->name('category.post.index');
+    });
+});
+
 
 Route::prefix('personal')->middleware(['auth', 'verified'])->group(function () {
     Route::prefix('main')->group(function () {
